@@ -2,7 +2,7 @@ All the characters below (except the first column) should have a red background
 when vim-troll-stopper is installed.
                
 !！ǃⵑ︕﹗
-"！
+"＂
 #＃﹟
 $＄﹩
 %％٪⁒﹪
