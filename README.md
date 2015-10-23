@@ -14,6 +14,8 @@ greek question marks in your code (original idea: Peter Ritchie, @peterritchie).
 There are even [tools](https://github.com/reinderien/mimic) that help you with
 this and take it to the next level.
 
+Also, any random code snippet from the internet/stackoverlow can be corrupt.
+
 Demo, a cannonical "hello troll" program:
 
 
