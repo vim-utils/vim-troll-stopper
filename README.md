@@ -45,11 +45,13 @@ filetypes.
 
 Just use your favorite vim plugin manager.
 
-### Configuration
+### Features
 
 - change highlight to custom color (in `.vimrc`)
 
         highlight TrollStopper ctermbg = red guibg = #FF0000
+
+- use the `:TrollStop` command to convert invalid characters to regular ones
 
 ### License
 

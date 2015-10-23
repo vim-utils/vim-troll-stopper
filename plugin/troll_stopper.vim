@@ -280,7 +280,25 @@ function! s:HighlighTrolling()
   endfor
 endfunction
 
+function! s:TrollStop(line1, line2)
+  let saved_search=@/
+  let line = line(".")
+  let col = col(".")
+
+  for [key, value] in items(s:troll_mappings)
+    if value ==# '/' || value ==# '&' || value ==# '~'
+      let value = '\' . value
+    endif
+    silent! keepj execute ':'.a:line1.','.a:line2.'s/'.key.'/'.value.'/g'
+  endfor
+
+  let @/=saved_search
+  call cursor(line, col)
+endfunction
+
 autocmd BufEnter * call <SID>HighlighTrolling()
+
+command! -range=% TrollStop call <SID>TrollStop(<line1>, <line2>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
