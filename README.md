@@ -32,10 +32,14 @@ Maybe you'd even start crying if you didn't know the above code is deceitful.
 
 #### Solution
 
+Vim users should know better than falling for these petty tricks.
 This plugin highlights troll characters with a red background so you are alerted
 something is not right.
 
 ![hello troll program](hello_troll.png)
+
+After you install this plugin, things should just work for any and all
+filetypes.
 
 ### Installation
 
