@@ -45,6 +45,12 @@ filetypes.
 
 Just use your favorite vim plugin manager.
 
+### Configuration
+
+- change highlight to custom color (in `.vimrc`)
+
+        highlight TrollStopper ctermbg = red guibg = #FF0000
+
 ### License
 
 [MIT](LICENSE.md)

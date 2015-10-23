@@ -11,8 +11,9 @@ let g:loaded_troll_stopper = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-" highlight Vimic ctermbg = red guibg = #FF0000
-highlight link Vimic Error
+if hlexists('TrollStopper') == 0
+  highlight link TrollStopper Error
+endif
 
 let s:trolls = {
       \ ' ': ["\u00A0", "\u2000", "\u2001", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200A", "\u202F", "\u205F"],
@@ -103,7 +104,7 @@ let s:trolls = {
 function! s:HighlighTrolling()
   for list_values in values(s:trolls)
     for value in list_values
-      call matchadd('Vimic', value)
+      call matchadd('TrollStopper', value)
     endfor
   endfor
 endfunction
