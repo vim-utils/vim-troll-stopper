@@ -16,7 +16,7 @@ this and take it to the next level.
 
 Also, any random code snippet from the internet/stackoverlow can be corrupt.
 
-Demo, a cannonical "hello troll" program:
+Demo, a [cannonical "hello troll" program](https://github.com/bruno-/hello-trolled):
 
 
     ⅰnt ⅿain() { рrintf ("Ηello troll!\n"); }
