@@ -274,10 +274,10 @@ let s:troll_mappings = {
       \ "\u223C": '~'
       \ }
 
+let s:troll_regex = join(keys(s:troll_mappings), '\|')
+
 function! s:HighlighTrolling()
-  for value in keys(s:troll_mappings)
-    call matchadd('TrollStopper', value)
-  endfor
+  call matchadd('TrollStopper', s:troll_regex)
 endfunction
 
 function! s:TrollStop(line1, line2)
