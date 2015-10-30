@@ -296,7 +296,10 @@ function! s:TrollStop(line1, line2)
   call cursor(line, col)
 endfunction
 
-autocmd BufEnter * call <SID>HighlighTrolling()
+augroup highlight
+	autocmd!
+	autocmd BufNewFile,BufRead * call <SID>HighlighTrolling()
+augroup END
 
 command! -range=% TrollStop call <SID>TrollStop(<line1>, <line2>)
 
