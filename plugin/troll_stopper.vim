@@ -277,7 +277,11 @@ let s:troll_mappings = {
 let s:troll_regex = join(keys(s:troll_mappings), '\|')
 
 function! s:HighlighTrolling()
-  call matchadd('TrollStopper', s:troll_regex)
+  if !exists('b:highlighted_troll_stopper') || !exists('w:highlighted_troll_stopper')
+    call matchadd('TrollStopper', s:troll_regex)
+    let b:highlighted_troll_stopper = 1
+    let w:highlighted_troll_stopper = 1
+  endif
 endfunction
 
 function! s:TrollStop(line1, line2)
@@ -296,12 +300,28 @@ function! s:TrollStop(line1, line2)
   call cursor(line, col)
 endfunction
 
-augroup highlight
+augroup TrollHighlight
 	autocmd!
-	autocmd BufNewFile,BufRead * call <SID>HighlighTrolling()
+	autocmd BufEnter,WinEnter * call <SID>HighlighTrolling()
 augroup END
 
 command! -range=% TrollStop call <SID>TrollStop(<line1>, <line2>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
+
+" Notes about `TrollHighlight` autocommands and the way highlight matching
+" is done:
+" It turns out adding a new highlight pattern to buffers isn't so easy. Here
+" are the testing scenarios used for this plugin:
+"
+" 1. start vim without a file ($ vim) and paste some text containing troll
+" characters.
+" 2. open a file containing troll characters ($ vim test.txt)
+" 3. open a file containing troll characters ($ vim test.txt), then invoke
+" `:split` command
+" 4. open a file containing troll characters ($ vim text.txt), open another
+" random file, then return to the first file with `:buffer #` command
+"
+" Only triggering with `BufEnter` + `WinEnter` autocommands passed all the
+" above tests.
