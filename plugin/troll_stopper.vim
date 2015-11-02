@@ -302,7 +302,7 @@ endfunction
 
 augroup TrollHighlight
 	autocmd!
-	autocmd BufEnter,WinEnter * call <SID>HighlighTrolling()
+	autocmd BufRead,BufNewFile * call <SID>HighlighTrolling()
 augroup END
 
 command! -range=% TrollStop call <SID>TrollStop(<line1>, <line2>)
@@ -323,5 +323,5 @@ unlet s:save_cpo
 " 4. open a file containing troll characters ($ vim text.txt), open another
 " random file, then return to the first file with `:buffer #` command
 "
-" Only triggering with `BufEnter` + `WinEnter` autocommands passed all the
+" Only triggering with `BufRead` + `BufNewFile` autocommands passed all the
 " above tests.
