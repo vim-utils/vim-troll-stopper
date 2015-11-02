@@ -277,9 +277,8 @@ let s:troll_mappings = {
 let s:troll_regex = join(keys(s:troll_mappings), '\|')
 
 function! s:HighlighTrolling()
-  if !exists('b:highlighted_troll_stopper') || !exists('w:highlighted_troll_stopper')
+  if !exists('w:highlighted_troll_stopper')
     call matchadd('TrollStopper', s:troll_regex)
-    let b:highlighted_troll_stopper = 1
     let w:highlighted_troll_stopper = 1
   endif
 endfunction
