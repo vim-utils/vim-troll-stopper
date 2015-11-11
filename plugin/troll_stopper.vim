@@ -300,8 +300,8 @@ function! s:TrollStop(line1, line2)
 endfunction
 
 augroup TrollHighlight
-	autocmd!
-	autocmd BufEnter,WinEnter * call <SID>HighlighTrolling()
+  autocmd!
+  autocmd BufEnter,WinEnter * call <SID>HighlighTrolling()
 augroup END
 
 command! -range=% TrollStop call <SID>TrollStop(<line1>, <line2>)
