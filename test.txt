@@ -1,6 +1,7 @@
 All the characters below (except the first column) should have a red background
 when vim-troll-stopper is installed.
-               <- various space characters here
+                 　<- various space characters here
+ ⁠⁡⁢⁣⁤⁥⁦⁧⁨⁩<-various invisible characters here
 !！ǃⵑ︕﹗
 "＂
 #＃﹟

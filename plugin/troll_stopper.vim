@@ -13,9 +13,11 @@ set cpo&vim
 
 if hlexists('TrollStopper') == 0
   highlight link TrollStopper Error
+  highlight Conceal NONE
+  highlight link Conceal Error
 endif
 
-let s:troll_mappings = {
+let s:visible_chars_map = {
       \ "\u00A0": ' ',
       \ "\u2000": ' ',
       \ "\u2001": ' ',
@@ -277,13 +279,33 @@ let s:troll_mappings = {
       \ "\u223C": '~'
       \ }
 
-let s:troll_regex = join(keys(s:troll_mappings), '\|')
+let s:invisible_chars_map = {
+      \ "\u2060": ' ',
+      \ "\u2061": ' ',
+      \ "\u2062": ' ',
+      \ "\u2063": ' ',
+      \ "\u2064": ' ',
+      \ "\u2065": ' ',
+      \ "\u2066": ' ',
+      \ "\u2067": ' ',
+      \ "\u2068": ' ',
+      \ "\u2069": ' '
+      \ }
+
+let s:all_chars_map = extend(extend({}, s:visible_chars_map), s:invisible_chars_map)
+
+let s:visible_chars_regex = join(keys(s:visible_chars_map), '\|')
+let s:invisible_chars_regex = join(keys(s:invisible_chars_map), '\|')
 
 function! s:HighlighTrolling()
   if !exists('w:highlighted_troll_stopper')
-    call matchadd('TrollStopper', s:troll_regex)
+    call matchadd('TrollStopper', s:visible_chars_regex)
+
     let w:highlighted_troll_stopper = 1
   endif
+
+  call matchadd('Conceal', s:invisible_chars_regex, 10, -1, { 'conceal': ' ' })
+  setlocal conceallevel=2 concealcursor=nc
 endfunction
 
 function! s:TrollStop(line1, line2)
@@ -291,7 +313,7 @@ function! s:TrollStop(line1, line2)
   let line = line(".")
   let col = col(".")
 
-  for [key, value] in items(s:troll_mappings)
+  for [key, value] in items(s:all_chars_map)
     if value ==# '/' || value ==# '&' || value ==# '~'
       let value = '\' . value
     endif
