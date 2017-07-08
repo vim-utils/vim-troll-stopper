@@ -17,6 +17,10 @@ if hlexists('TrollStopper') == 0
   highlight link Conceal Error
 endif
 
+if !exists("g:troll_stopper_conceal")
+  let g:troll_stopper_conceal = 0
+endif
+
 let s:visible_chars_map = {
       \ "\u00A0": ' ',
       \ "\u2000": ' ',
@@ -304,8 +308,10 @@ function! s:HighlighTrolling()
     let w:highlighted_troll_stopper = 1
   endif
 
-  call matchadd('Conceal', s:invisible_chars_regex, 10, -1, { 'conceal': ' ' })
-  setlocal conceallevel=2 concealcursor=nc
+  if g:troll_stopper_conceal
+    call matchadd('Conceal', s:invisible_chars_regex, 10, -1, { 'conceal': ' ' })
+    setlocal conceallevel=2 concealcursor=nc
+  endif
 endfunction
 
 function! s:TrollStop(line1, line2)
