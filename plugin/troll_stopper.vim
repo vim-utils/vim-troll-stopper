@@ -298,8 +298,8 @@ let s:invisible_chars_map = {
 
 let s:all_chars_map = extend(extend({}, s:visible_chars_map), s:invisible_chars_map)
 
-let s:visible_chars_regex = join(keys(s:visible_chars_map), '\|')
-let s:invisible_chars_regex = join(keys(s:invisible_chars_map), '\|')
+let s:visible_chars_regex = '[' . join(keys(s:visible_chars_map), '') . ']'
+let s:invisible_chars_regex = '[' . join(keys(s:invisible_chars_map), '') . ']'
 
 function! s:HighlighTrolling()
   if !exists('w:highlighted_troll_stopper')
