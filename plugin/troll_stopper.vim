@@ -12,9 +12,9 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 if hlexists('TrollStopper') == 0
-  highlight link TrollStopper Error
+  highlight default link TrollStopper Error
   highlight Conceal NONE
-  highlight link Conceal Error
+  highlight default link Conceal Error
 endif
 
 if !exists("g:troll_stopper_conceal")
